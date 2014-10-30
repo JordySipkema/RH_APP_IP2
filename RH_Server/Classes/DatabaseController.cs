@@ -35,7 +35,11 @@ namespace RH_Server.Classes
 
         private Mallaca.Usertypes.User DbUserToEntityUser(User user)
         {
-            Mallaca.Usertypes.User = new
+            if (user.Usertype.HasValue)
+            {
+                
+            }
+            return null;
         }
 
     }
