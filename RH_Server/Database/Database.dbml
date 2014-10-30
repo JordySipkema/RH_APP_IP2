@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Database" Class="DataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\Database\Database.mdf;Integrated Security=True" SettingsObjectName="RH_Server.Properties.Settings" SettingsPropertyName="DatabaseConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Measurement" Member="Measurements">
+    <Type Name="Measurement">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Session_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RPM" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Speed" Type="System.Decimal" DbType="Decimal(10,1)" CanBeNull="true" />
+      <Column Name="Distance" Type="System.Decimal" DbType="Decimal(10,1)" CanBeNull="true" />
+      <Column Name="Power" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Energy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Pulse" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="User_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Datatime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Time" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Association Name="User_Measurement" Member="User" ThisKey="User_ID" OtherKey="Id" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SpecialistHasClient" Member="SpecialistHasClients">
+    <Type Name="SpecialistHasClient">
+      <Column Name="SpecialistID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ClientID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="User_SpecialistHasClient" Member="User" ThisKey="ClientID" OtherKey="Id" Type="User" IsForeignKey="true" />
+      <Association Name="User_SpecialistHasClient1" Member="User1" ThisKey="SpecialistID" OtherKey="Id" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[User]" Member="Users">
+    <Type Name="User">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Username" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Firstname" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Lastname" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DateOfBirth" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Gender" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Usertype" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="Password" Type="System.String" DbType="Char(100)" CanBeNull="true" />
+      <Association Name="User_Measurement" Member="Measurements" ThisKey="Id" OtherKey="User_ID" Type="Measurement" />
+      <Association Name="User_SpecialistHasClient" Member="SpecialistHasClients" ThisKey="Id" OtherKey="ClientID" Type="SpecialistHasClient" />
+      <Association Name="User_SpecialistHasClient1" Member="SpecialistHasClients1" ThisKey="Id" OtherKey="SpecialistID" Type="SpecialistHasClient" />
+    </Type>
+  </Table>
+</Database>
