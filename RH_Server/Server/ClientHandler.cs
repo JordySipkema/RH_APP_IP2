@@ -34,7 +34,7 @@ namespace RH_Server.Server
 
         private readonly List<Measurement> _measurementsList = new List<Measurement>();
 
-        private readonly DBConnect _dbConnect = new DBConnect();
+        private readonly DatabaseController _dbController = new DatabaseController();
 
         private User currentUser;
         private int currentSession = -1;
@@ -400,7 +400,7 @@ namespace RH_Server.Server
                     json.TryGetValue("dataID", out userid);
                     int userId;
                     int.TryParse((string)userid,out userId);
-                    var useristList = new List<User> {_dbConnect.getUser(userId)};
+                    var useristList = new List<User> {_dbController.GetUser(userId)};
                     resp = new PullUsersResponsePacket(useristList, "user");
                     break;
 
@@ -441,7 +441,7 @@ namespace RH_Server.Server
             json.TryGetValue("username", out username);
             json.TryGetValue("dataId", out UserId);
 
-            var measurements = _dbConnect.getMeasurementsOfUser(username == null ? UserId.ToString() : username.ToString(), json["sessionID"].ToString());
+            var measurements = _dbController.GetMeasurementsByUser((string) username, (int) sessionId);
 
             var response = new PullResponsePacket<Measurement>(measurements,"measurements");
 
@@ -452,7 +452,7 @@ namespace RH_Server.Server
 
         public void HandleLsuPacket(JObject json)
         {
-            var users = _dbConnect.GetAllUsers();
+            var users = _dbController.GetAllUsers();
             var i = users.Count;
             var u = JArray.FromObject(users);
 
