@@ -29,10 +29,12 @@ namespace RH_APP.Classes
 
         public override Measurement RecieveData()
         {
+            String rcv = string.Empty;
             try
             {
                 serial.WriteLine("ST");
-                Measurement m = ProtocolToMeasurement(serial.ReadLine());
+                rcv = serial.ReadLine();
+                Measurement m = ProtocolToMeasurement(rcv);
                 m.DATE = DateTime.Now;
                 return m;
             }
@@ -46,6 +48,7 @@ namespace RH_APP.Classes
             }
             catch (ArgumentException)
             {
+                Console.WriteLine("Data received = {0}", rcv);
                 Console.WriteLine("Invalid data!");
             }
             return null;

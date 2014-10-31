@@ -37,6 +37,7 @@ namespace RH_APP.Controller
             }
         }
 
+        public List<Measurement> Measurements { get { return _data; } }
         public void Stop()
         {
             _bw.CancelAsync();
@@ -58,7 +59,8 @@ namespace RH_APP.Controller
 
         public void SetPower(int power)
         {
-            _queue.Enqueue(String.Format("CM PW {0}", power));
+            Console.WriteLine("Enqueue: PW = {0}", power);
+            _queue.Enqueue(String.Format("PW {0}", power));
         }
 
         public event EventHandler UpdatedList;
@@ -137,6 +139,8 @@ namespace RH_APP.Controller
             while (_queue.Count > 0)
             {
                 var cmd = _queue.Dequeue();
+                Console.WriteLine("Dequeue: cmd = {0}", cmd);
+                _bike.SendData("CM");
                 _bike.SendData(cmd);
                 Thread.Sleep(50);
             }
