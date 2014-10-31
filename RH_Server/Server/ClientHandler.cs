@@ -29,7 +29,6 @@ namespace RH_Server.Server
         private const int BufferSize = 1024;
         private readonly TcpClient _tcpclient;
         private readonly SslStream _sslStream;
-        private readonly DBConnect _database;
         private List<byte> _totalBuffer;
 
         private readonly List<Measurement> _measurementsList = new List<Measurement>();
@@ -49,7 +48,6 @@ namespace RH_Server.Server
             _sslStream = new SslStream(_tcpclient.GetStream());
             _sslStream.AuthenticateAsServer(certificate);
             _totalBuffer = new List<byte>();
-            _database = new DBConnect();
             var thread = new Thread(ThreadLoop);
             thread.Start();
 
@@ -234,7 +232,7 @@ namespace RH_Server.Server
             //Code to check User/pass here
             if (Authentication.Authenticate(username, password, this))
             {
-                currentUser = _database.getUser(username);
+                currentUser = _dbController.GetUser(username);
                 returnJson = new LoginResponsePacket(
                     Statuscode.Status.Ok,
                     Authentication.GetUser(username).AuthToken,
@@ -268,7 +266,7 @@ namespace RH_Server.Server
             int id = currentUser.Id ?? -1;
             if (currentSession == -1)
             {
-                currentSession = _database.getNewTrainingSessionId(id);
+                currentSession = _dbController.GetNewTrainingSessionId(id);
                 var notifyPacket = new NotifyPacket(NotifyPacket.Subject.NewTrainingId, currentSession.ToString(),
     currentUser.NonNullId.ToString(), "");
                 Send(notifyPacket);
@@ -288,7 +286,7 @@ namespace RH_Server.Server
                     Console.WriteLine(Resources.ClientHandler_HandlePushPacked_Recieved, measurements.FirstOrDefault());
                 }
 
-                _database.SaveMeasurements(measurementsL, currentSession, id);
+                _dbController.SaveMeasurement(measurementsL, currentSession, id);
 
                 var senderU = Authentication.GetUserByAuthToken(authtoken);
                 // Check that sender is a client. if its not, return.
@@ -364,7 +362,7 @@ namespace RH_Server.Server
                     var clients = Notifier.Instance.GetListeners(spec);
                     //get all other specialist subscribed to this client, excluding the sending specialist
                     var specialists =
-                        Notifier.Instance.GetListeners((Client) _database.getUser(p.UsernameDestination))
+                        Notifier.Instance.GetListeners((Client) _dbController.GetUser(p.UsernameDestination))
                             .Where(x => x.Username != currentUser.Username);
 
                     var allReceivers = clients.Concat<User>(specialists).Distinct(new User.UserComparer());
@@ -405,14 +403,14 @@ namespace RH_Server.Server
                     break;
 
                 case "users":
-                    resp = new PullUsersResponsePacket(_database.GetAllUsers(), "User");
+                    resp = new PullUsersResponsePacket(_dbController.GetAllUsers(), "User");
                     break;
 
                 case "connected_clients":
                     resp = new PullUsersResponsePacket(Authentication.GetClients(), "connected_clients");
                     break;
                 case "user_sessions":
-                    resp = new PullResponsePacket<SessionData>(_database.GetTrainingSessions(),
+                    resp = new PullResponsePacket<SessionData>(_dbController.GetTrainingSessions(),
                         "user_sessions");
                     break;
                 case "measurements":

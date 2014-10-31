@@ -13,7 +13,7 @@ using EntityMeasurement = Mallaca.Measurement;
 
 namespace RH_Server.Classes
 {
-    class DatabaseController
+    public class DatabaseController
     {
         private readonly DataClassesDataContext _dataContext;
 
