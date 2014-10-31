@@ -3,16 +3,16 @@
   <Table Name="dbo.Measurement" Member="Measurements">
     <Type Name="Measurement">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Session_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="RPM" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Speed" Type="System.Decimal" DbType="Decimal(10,1)" CanBeNull="true" />
-      <Column Name="Distance" Type="System.Decimal" DbType="Decimal(10,1)" CanBeNull="true" />
-      <Column Name="Power" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Energy" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Pulse" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="User_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Datatime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Time" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="Session_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RPM" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Speed" Type="System.Decimal" DbType="Decimal(10,1) NOT NULL" CanBeNull="false" />
+      <Column Name="Distance" Type="System.Decimal" DbType="Decimal(10,1) NOT NULL" CanBeNull="false" />
+      <Column Name="Power" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Energy" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Pulse" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="User_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Datatime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Time" Type="System.TimeSpan" DbType="Time NOT NULL" CanBeNull="false" />
       <Association Name="User_Measurement" Member="User" ThisKey="User_ID" OtherKey="Id" Type="User" IsForeignKey="true" />
     </Type>
   </Table>
@@ -27,13 +27,13 @@
   <Table Name="dbo.[User]" Member="Users">
     <Type Name="User">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Username" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Firstname" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Lastname" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="DateOfBirth" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Username" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Firstname" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Lastname" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="DateOfBirth" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
       <Column Name="Gender" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
-      <Column Name="Usertype" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
-      <Column Name="Password" Type="System.String" DbType="Char(100)" CanBeNull="true" />
+      <Column Name="Usertype" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="Char(100) NOT NULL" CanBeNull="false" />
       <Association Name="User_Measurement" Member="Measurements" ThisKey="Id" OtherKey="User_ID" Type="Measurement" />
       <Association Name="User_SpecialistHasClient" Member="SpecialistHasClients" ThisKey="Id" OtherKey="ClientID" Type="SpecialistHasClient" />
       <Association Name="User_SpecialistHasClient1" Member="SpecialistHasClients1" ThisKey="Id" OtherKey="SpecialistID" Type="SpecialistHasClient" />

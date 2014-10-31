@@ -101,25 +101,25 @@ namespace RH_Server.Database
 		
 		private int _Id;
 		
-		private System.Nullable<int> _Session_ID;
+		private int _Session_ID;
 		
-		private System.Nullable<int> _RPM;
+		private int _RPM;
 		
-		private System.Nullable<decimal> _Speed;
+		private decimal _Speed;
 		
-		private System.Nullable<decimal> _Distance;
+		private decimal _Distance;
 		
-		private System.Nullable<int> _Power;
+		private int _Power;
 		
-		private System.Nullable<int> _Energy;
+		private int _Energy;
 		
-		private System.Nullable<int> _Pulse;
+		private int _Pulse;
 		
-		private System.Nullable<int> _User_ID;
+		private int _User_ID;
 		
-		private System.Nullable<System.DateTime> _Datatime;
+		private System.DateTime _Datatime;
 		
-		private System.Nullable<System.TimeSpan> _Time;
+		private System.TimeSpan _Time;
 		
 		private EntityRef<User> _User;
 		
@@ -129,25 +129,25 @@ namespace RH_Server.Database
     partial void OnCreated();
     partial void OnIdChanging(int value);
     partial void OnIdChanged();
-    partial void OnSession_IDChanging(System.Nullable<int> value);
+    partial void OnSession_IDChanging(int value);
     partial void OnSession_IDChanged();
-    partial void OnRPMChanging(System.Nullable<int> value);
+    partial void OnRPMChanging(int value);
     partial void OnRPMChanged();
-    partial void OnSpeedChanging(System.Nullable<decimal> value);
+    partial void OnSpeedChanging(decimal value);
     partial void OnSpeedChanged();
-    partial void OnDistanceChanging(System.Nullable<decimal> value);
+    partial void OnDistanceChanging(decimal value);
     partial void OnDistanceChanged();
-    partial void OnPowerChanging(System.Nullable<int> value);
+    partial void OnPowerChanging(int value);
     partial void OnPowerChanged();
-    partial void OnEnergyChanging(System.Nullable<int> value);
+    partial void OnEnergyChanging(int value);
     partial void OnEnergyChanged();
-    partial void OnPulseChanging(System.Nullable<int> value);
+    partial void OnPulseChanging(int value);
     partial void OnPulseChanged();
-    partial void OnUser_IDChanging(System.Nullable<int> value);
+    partial void OnUser_IDChanging(int value);
     partial void OnUser_IDChanged();
-    partial void OnDatatimeChanging(System.Nullable<System.DateTime> value);
+    partial void OnDatatimeChanging(System.DateTime value);
     partial void OnDatatimeChanged();
-    partial void OnTimeChanging(System.Nullable<System.TimeSpan> value);
+    partial void OnTimeChanging(System.TimeSpan value);
     partial void OnTimeChanged();
     #endregion
 		
@@ -177,8 +177,8 @@ namespace RH_Server.Database
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Session_ID", DbType="Int")]
-		public System.Nullable<int> Session_ID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Session_ID", DbType="Int NOT NULL")]
+		public int Session_ID
 		{
 			get
 			{
@@ -197,8 +197,8 @@ namespace RH_Server.Database
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RPM", DbType="Int")]
-		public System.Nullable<int> RPM
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RPM", DbType="Int NOT NULL")]
+		public int RPM
 		{
 			get
 			{
@@ -217,8 +217,8 @@ namespace RH_Server.Database
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Speed", DbType="Decimal(10,1)")]
-		public System.Nullable<decimal> Speed
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Speed", DbType="Decimal(10,1) NOT NULL")]
+		public decimal Speed
 		{
 			get
 			{
@@ -237,8 +237,8 @@ namespace RH_Server.Database
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Distance", DbType="Decimal(10,1)")]
-		public System.Nullable<decimal> Distance
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Distance", DbType="Decimal(10,1) NOT NULL")]
+		public decimal Distance
 		{
 			get
 			{
@@ -257,8 +257,8 @@ namespace RH_Server.Database
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Power", DbType="Int")]
-		public System.Nullable<int> Power
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Power", DbType="Int NOT NULL")]
+		public int Power
 		{
 			get
 			{
@@ -277,8 +277,8 @@ namespace RH_Server.Database
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Energy", DbType="Int")]
-		public System.Nullable<int> Energy
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Energy", DbType="Int NOT NULL")]
+		public int Energy
 		{
 			get
 			{
@@ -297,8 +297,8 @@ namespace RH_Server.Database
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pulse", DbType="Int")]
-		public System.Nullable<int> Pulse
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pulse", DbType="Int NOT NULL")]
+		public int Pulse
 		{
 			get
 			{
@@ -317,8 +317,8 @@ namespace RH_Server.Database
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_User_ID", DbType="Int")]
-		public System.Nullable<int> User_ID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_User_ID", DbType="Int NOT NULL")]
+		public int User_ID
 		{
 			get
 			{
@@ -341,8 +341,8 @@ namespace RH_Server.Database
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Datatime", DbType="DateTime")]
-		public System.Nullable<System.DateTime> Datatime
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Datatime", DbType="DateTime NOT NULL")]
+		public System.DateTime Datatime
 		{
 			get
 			{
@@ -361,8 +361,8 @@ namespace RH_Server.Database
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Time", DbType="Time")]
-		public System.Nullable<System.TimeSpan> Time
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Time", DbType="Time NOT NULL")]
+		public System.TimeSpan Time
 		{
 			get
 			{
@@ -408,7 +408,7 @@ namespace RH_Server.Database
 					}
 					else
 					{
-						this._User_ID = default(Nullable<int>);
+						this._User_ID = default(int);
 					}
 					this.SendPropertyChanged("User");
 				}
@@ -495,11 +495,11 @@ namespace RH_Server.Database
 		
 		private string _Lastname;
 		
-		private System.Nullable<System.DateTime> _DateOfBirth;
+		private System.DateTime _DateOfBirth;
 		
 		private char _Gender;
 		
-		private System.Nullable<short> _Usertype;
+		private short _Usertype;
 		
 		private string _Password;
 		
@@ -517,11 +517,11 @@ namespace RH_Server.Database
     partial void OnFirstnameChanged();
     partial void OnLastnameChanging(string value);
     partial void OnLastnameChanged();
-    partial void OnDateOfBirthChanging(System.Nullable<System.DateTime> value);
+    partial void OnDateOfBirthChanging(System.DateTime value);
     partial void OnDateOfBirthChanged();
     partial void OnGenderChanging(char value);
     partial void OnGenderChanged();
-    partial void OnUsertypeChanging(System.Nullable<short> value);
+    partial void OnUsertypeChanging(short value);
     partial void OnUsertypeChanged();
     partial void OnPasswordChanging(string value);
     partial void OnPasswordChanged();
@@ -553,7 +553,7 @@ namespace RH_Server.Database
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Username", DbType="NVarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Username", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
 		public string Username
 		{
 			get
@@ -573,7 +573,7 @@ namespace RH_Server.Database
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Firstname", DbType="NVarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Firstname", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
 		public string Firstname
 		{
 			get
@@ -593,7 +593,7 @@ namespace RH_Server.Database
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Lastname", DbType="NVarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Lastname", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
 		public string Lastname
 		{
 			get
@@ -613,8 +613,8 @@ namespace RH_Server.Database
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateOfBirth", DbType="Date")]
-		public System.Nullable<System.DateTime> DateOfBirth
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateOfBirth", DbType="Date NOT NULL")]
+		public System.DateTime DateOfBirth
 		{
 			get
 			{
@@ -653,8 +653,8 @@ namespace RH_Server.Database
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Usertype", DbType="SmallInt")]
-		public System.Nullable<short> Usertype
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Usertype", DbType="SmallInt NOT NULL")]
+		public short Usertype
 		{
 			get
 			{
@@ -673,7 +673,7 @@ namespace RH_Server.Database
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="Char(100)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="Char(100) NOT NULL", CanBeNull=false)]
 		public string Password
 		{
 			get

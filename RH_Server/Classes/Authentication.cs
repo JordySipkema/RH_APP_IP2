@@ -16,7 +16,7 @@ namespace RH_Server.Classes
         public static Boolean Authenticate(String username, String passhash, ClientHandler handler)
         {
             //check that user and passhash are valid.
-            var database = new DBConnect();
+            var database = new DatabaseController();
             var tuple = database.ValidateUser(username, passhash, true);
 
             if (!tuple.Item1) // if the tuple.Item1 equals false, return false and exit this method.
@@ -32,8 +32,8 @@ namespace RH_Server.Classes
             //2. Hash the string.
             var hash = Hashing.CreateSHA256(aboutToHash);
 
-            //3. Create the user :D
-            var user = database.getUser(username);
+            //3. Create the user :D (fromDatabase)
+            var user = database.GetUser(username);
 
             //if user == null, exit this method!
             if (user == null) return false;
