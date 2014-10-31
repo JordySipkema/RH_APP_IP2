@@ -23,14 +23,6 @@ namespace RH_APP
 
             
         }
-
-        private static void insertMeasurementTest()
-        {
-            DBConnect db = new DBConnect();
-            Measurement m = new Measurement();
-
-            db.SaveMeasurement(m, db.getNewTrainingSessionId(1), 1);
-        }
     }
 
 

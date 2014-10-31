@@ -181,6 +181,10 @@
       <Project>{da5167db-3a0d-4294-bad5-4e09775a8ff9}</Project>
       <Name>Mallaca</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RH_Server\RH_Server.csproj">
+      <Project>{6a25467d-19ba-487b-9e0d-06d24a43193a}</Project>
+      <Name>RH_Server</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

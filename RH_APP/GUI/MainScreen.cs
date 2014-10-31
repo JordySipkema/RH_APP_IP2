@@ -93,8 +93,6 @@ namespace RH_APP.GUI
                     Settings.GetInstance().authToken));
                 this.Hide();
 
-                DBConnect db = new DBConnect();
-
                 int id;
                 if (isSpecialist)
                     id = client.NonNullId;
@@ -103,8 +101,8 @@ namespace RH_APP.GUI
                     id = Settings.GetInstance().CurrentUser.NonNullId;
                 }
 
-                GraphResultUI g = new GraphResultUI(db.getMeasurementsOfUser(id.ToString(), currentTraingId.ToString()));
-                g.Show();
+                //GraphResultUI g = new GraphResultUI(db.getMeasurementsOfUser(id.ToString(), currentTraingId.ToString()));
+                //g.Show();
             }
 
             _inTraining = false;
