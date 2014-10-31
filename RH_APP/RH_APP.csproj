@@ -59,6 +59,7 @@
     <Compile Include="Classes\TXT_Bike.cs" />
     <Compile Include="Controller\RH_Controller.cs" />
     <Compile Include="Controller\Specialist_Controller.cs" />
+    <Compile Include="Controller\Training_Controller.cs" />
     <Compile Include="GUI\BikeUI.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -101,12 +102,6 @@
     <Compile Include="GUI\MainMenu.Designer.cs">
       <DependentUpon>MainMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\MainScreen.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\MainScreen.Designer.cs">
-      <DependentUpon>MainScreen.cs</DependentUpon>
-    </Compile>
     <Compile Include="GUI\SelectMeasurementScreen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -141,9 +136,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\MainMenu.resx">
       <DependentUpon>MainMenu.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GUI\MainScreen.resx">
-      <DependentUpon>MainScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\SelectMeasurementScreen.resx">
       <DependentUpon>SelectMeasurementScreen.cs</DependentUpon>

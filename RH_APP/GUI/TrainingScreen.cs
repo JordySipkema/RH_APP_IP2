@@ -25,6 +25,7 @@ namespace RH_APP.GUI
         private bool isSpecialist;
         private User client;
         private int currentTraingId = -1;
+        private Training_Controller _trainingController;
 
         public TrainingScreen(Boolean showSpecialistItems)
         {
@@ -37,10 +38,7 @@ namespace RH_APP.GUI
             if (!isSpecialist)
             {
                 numericUpDown1.Visible = false;
-                setPowerLabel.Visible = false;
                 broadcastCheckbox.Visible = false;
-                startTrainingButton.Visible = false;
-                _quitButton.Visible = false;
             }
 
 
@@ -68,10 +66,14 @@ namespace RH_APP.GUI
                     MessageBox.Show("No COM port found. Please connect your pc to a Kettler x7");
                     return;
                 }
-                _controller = new RH_Controller(new COM_Bike(port), true);
+                _trainingController = new Training_Controller(port);
+                _trainingController.StartPreTraining();
+                startTrainingButton.Enabled = false;
+                
 
                 //_controller = new RH_Controller(new STUB_Bike(), true);
-                _controller.UpdatedList += UpdateGUI;
+                //_controller.UpdatedList += UpdateGUI;
+                _trainingController.UpdatedList += UpdateGUI;
             }
             startTrainingButton.Enabled = false;
             _quitButton.Enabled = true;
@@ -83,8 +85,8 @@ namespace RH_APP.GUI
 
             //this.Hide();            
             //_controller.UpdatedList -= updateGUI;
-            if (_controller != null)
-                _controller.Stop();
+            //if (_controller != null)
+            //    _controller.Stop();
 
             if (isSpecialist)
             {
@@ -203,16 +205,16 @@ namespace RH_APP.GUI
 
         }
 
-        private void numericUpDown1_Click(object sender, EventArgs e)
-        {
-            var power = (int)numericUpDown1.Value;
+        //private void numericUpDown1_Click(object sender, EventArgs e)
+        //{
+        //    var power = (int)numericUpDown1.Value;
 
-            if (_controller != null)
-                _controller.SetPower(power);
+        //    if (_controller != null)
+        //        _controller.SetPower(power);
 
-            if (_spController != null)
-                _spController.SetPower(power, client.Username);
-        }
+        //    if (_spController != null)
+        //        _spController.SetPower(power, client.Username);
+        //}
 
         private void HandleIncomingPackets(Packet p)
         {
@@ -259,10 +261,10 @@ namespace RH_APP.GUI
                 if (config == null)
                     return;
 
-                if (config.Power.HasValue && _controller != null)
-                {
-                    _controller.SetPower(config.Power.Value);
-                }
+                //if (config.Power.HasValue && _controller != null)
+                //{
+                //    _controller.SetPower(config.Power.Value);
+                //}
             }
             else if (p is NotifyPacket)
             {

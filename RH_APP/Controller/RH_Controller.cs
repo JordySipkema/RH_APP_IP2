@@ -58,7 +58,7 @@ namespace RH_APP.Controller
 
         public void SetPower(int power)
         {
-            _queue.Enqueue(String.Format("PW {0}", power));
+            _queue.Enqueue(String.Format("CM PW {0}", power));
         }
 
         public event EventHandler UpdatedList;
