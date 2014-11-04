@@ -1,10 +1,7 @@
 ﻿using Mallaca;
 using RH_APP.Classes;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Timers;
 
 namespace RH_APP.Controller
@@ -24,6 +21,16 @@ namespace RH_APP.Controller
         private void _controller_UpdatedList(object sender, EventArgs e)
         {
             OnUpdatedList(e as MeasurementEventArgs);
+        }
+
+        public delegate void MessageDelegate(String sender, String message);
+
+        public event MessageDelegate MessageEvent;
+
+        private void OnMessageEvent(string sender, string message)
+        {
+            MessageDelegate handler = MessageEvent;
+            if (handler != null) handler(sender, message);
         }
 
         public event EventHandler UpdatedList;
@@ -59,8 +66,10 @@ namespace RH_APP.Controller
         {
             if (_controller.LatestMeasurement.RPM < 50 || _controller.LatestMeasurement.RPM > 60)
             {
-                Console.WriteLine("Let op uw RPM");  
-    
+                OnMessageEvent("System",
+                    _controller.LatestMeasurement.RPM < 50
+                        ? "Uw RPM is te laag. Minimum = 50 RPM"
+                        : "Uw RPM is te hoog, Maximum = 60 RPM");
             }
 
             if(_count >= 48 && ((_count - 48) % 3) == 0){

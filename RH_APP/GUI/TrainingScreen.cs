@@ -66,6 +66,7 @@ namespace RH_APP.GUI
                     MessageBox.Show("No COM port found. Please connect your pc to a Kettler x7");
                     return;
                 }
+                _trainingController.MessageEvent += _trainingController_MessageEvent;
                 _trainingController = new Training_Controller(port);
                 _trainingController.StartPreTraining();
                 startTrainingButton.Enabled = false;
@@ -78,6 +79,17 @@ namespace RH_APP.GUI
             startTrainingButton.Enabled = false;
             _quitButton.Enabled = true;
 
+        }
+
+        private void _trainingController_MessageEvent(string sender, string message)
+        {
+            if (InvokeRequired)
+            {
+                Invoke((new Action(() => _trainingController_MessageEvent(sender, message))));
+                return;
+            }    
+
+            AddNewMessage(sender, message);
         }
 
         private void _quitButton_Click(object sender, EventArgs e)
