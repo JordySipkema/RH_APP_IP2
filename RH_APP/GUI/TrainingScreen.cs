@@ -66,8 +66,8 @@ namespace RH_APP.GUI
                     MessageBox.Show("No COM port found. Please connect your pc to a Kettler x7");
                     return;
                 }
-                _trainingController.MessageEvent += _trainingController_MessageEvent;
                 _trainingController = new Training_Controller(port);
+                _trainingController.MessageEvent += _trainingController_MessageEvent;
                 _trainingController.StartPreTraining();
                 startTrainingButton.Enabled = false;
                 
@@ -332,7 +332,7 @@ namespace RH_APP.GUI
 
             dataRPM.Text = eventargs.Measurement.RPM + "";
             dataSPEED.Text = String.Format("{0:0.0}", eventargs.Measurement.SPEED / 10.0);
-            dataDISTANCE.Text = String.Format("{0:0.00}", eventargs.Measurement.DISTANCE / 10.0);
+            dataDISTANCE.Text = String.Format("{0:0.0}", eventargs.Measurement.DISTANCE / 10.0);
             dataPOWER.Text = eventargs.Measurement.POWER + "";
             dataPOWERPCT.Text = eventargs.Measurement.POWERPCT + "%";
             dataENERGY.Text = eventargs.Measurement.ENERGY + "";
@@ -400,6 +400,16 @@ namespace RH_APP.GUI
                 }
             }
             return null;
+
+        }
+
+        private void dataDISTANCE_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
 
         }
 
