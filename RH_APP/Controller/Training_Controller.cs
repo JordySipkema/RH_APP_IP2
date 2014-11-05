@@ -49,7 +49,7 @@ namespace RH_APP.Controller
         public void StartPreTraining()
         {
 
-            _trainingTimer = new Timer(10000);
+            _trainingTimer = new Timer(30000);
             _trainingTimer.Elapsed += PowerCheckAndSet;
             _trainingTimer.Enabled = true;
             
@@ -70,8 +70,8 @@ namespace RH_APP.Controller
             {
                 OnMessageEvent("System",
                     _controller.LatestMeasurement.RPM < 50
-                        ? "Uw RPM is te laag. Minimum = 50 RPM"
-                        : "Uw RPM is te hoog, Maximum = 60 RPM");
+                        ? "RPM is too low. Minimum = 50 RPM"
+                        : "RPM is to high, Maximum = 60 RPM");
             }
 
             if (_count >= 48 && ((_count - 48)%3) == 0)
@@ -120,6 +120,8 @@ namespace RH_APP.Controller
             if (_controller.LatestMeasurement.PULSE > 120 && _controller.LatestMeasurement.PULSE < 170)
             {               
                 StartTraining();
+                OnMessageEvent("System", "Training started");
+
             }
         }
     }

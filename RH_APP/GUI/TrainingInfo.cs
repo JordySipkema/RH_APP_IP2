@@ -26,5 +26,10 @@ namespace RH_APP.GUI
             var mainScreen = new TrainingScreen(false) {Text = " Remote Healthcare - Client Edition"};
             mainScreen.ShowDialog();
         }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
