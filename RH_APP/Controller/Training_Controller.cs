@@ -99,6 +99,8 @@ namespace RH_APP.Controller
                             VO2Max = result
                         };
                         new DatabaseController().SaveResult(resultC);
+                        OnMessageEvent("System:Uitslag", 
+                            String.Format(">>>> Uw uitslag is bekend: VO2Max = {0} ml/kg/min", result));
                     }
                 }
             }
