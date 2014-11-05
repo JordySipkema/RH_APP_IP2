@@ -7,7 +7,6 @@ using System.Security.Authentication;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using Mallaca.Properties;
-using Mallaca.Network.Packet;
 
 namespace Mallaca.Network
 {

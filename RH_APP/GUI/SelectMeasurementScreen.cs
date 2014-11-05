@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Mallaca;
 using Mallaca.Network;
@@ -13,7 +8,6 @@ using Mallaca.Network.Packet;
 using Mallaca.Network.Packet.Request;
 using Mallaca.Network.Packet.Response;
 using Mallaca.Usertypes;
-using Newtonsoft.Json.Linq;
 using RH_APP.Classes;
 
 namespace RH_APP.GUI

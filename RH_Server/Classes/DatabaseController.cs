@@ -77,6 +77,11 @@ namespace RH_Server.Classes
             return x.ToList();
         }
 
+        public List<Result> GerResults()
+        {
+            return _dataContext.Results.ToList();
+        } 
+
         public Tuple<bool, UserType> ValidateUser(String username, String password, bool passIsHashedWithSha256 = true)
         {
             if (!passIsHashedWithSha256)
@@ -167,8 +172,18 @@ namespace RH_Server.Classes
 
         public bool SaveUser(EntityUser u)
         {
-            return false;
+            var dbUser = UserToDbUser(u);
+            _dataContext.Users.InsertOnSubmit(dbUser);
+            _dataContext.SubmitChanges(ConflictMode.ContinueOnConflict);
+            return true;
         }
+
+        public void SaveResult(Result r)
+        {
+            _dataContext.Results.InsertOnSubmit(r);
+            _dataContext.SubmitChanges(ConflictMode.ContinueOnConflict);
+        }
+
         private static EntityUser DbUserToEntityUser(User user)
         {
             var usertype = (UserType) user.Usertype;

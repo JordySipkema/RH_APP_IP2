@@ -27,18 +27,31 @@
         <classShapeMoniker Id="20020d52-63ea-4395-817a-82f32951fedc" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(4.125 : 2.84780110677083); (4.125 : 3.75)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(4.125 : 2.84780110677083); (4.125 : 3.75)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DataClassesDataContext/User/User_SpecialistHasClient" />
       <nodes>
         <classShapeMoniker Id="30cde61f-a34a-4ac5-91a9-7955957a50cd" />
         <classShapeMoniker Id="6bc8128a-c9d4-44bc-91ff-116dfafed8ab" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(4.625 : 2.84780110677083); (4.625 : 3.75)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(4.625 : 2.84780110677083); (4.625 : 3.75)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DataClassesDataContext/User/User_SpecialistHasClient1" />
       <nodes>
         <classShapeMoniker Id="30cde61f-a34a-4ac5-91a9-7955957a50cd" />
         <classShapeMoniker Id="6bc8128a-c9d4-44bc-91ff-116dfafed8ab" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="62851786-5df1-4889-888f-cecbc6b48be3" absoluteBounds="5.875, 0.875, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/DataClassesDataContext/Result" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1c202a56-2523-44cd-b1bf-6dd8652ed790" absoluteBounds="5.89, 1.335, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.25 : 1.66429768880208); (5.875 : 1.66429768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DataClassesDataContext/User/User_Result" />
+      <nodes>
+        <classShapeMoniker Id="30cde61f-a34a-4ac5-91a9-7955957a50cd" />
+        <classShapeMoniker Id="62851786-5df1-4889-888f-cecbc6b48be3" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

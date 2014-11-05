@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Mallaca.Usertypes;
 using Newtonsoft.Json.Linq;
 
 namespace Mallaca.Network.Packet.Response

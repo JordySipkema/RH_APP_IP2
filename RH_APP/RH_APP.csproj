@@ -57,6 +57,7 @@
     <Compile Include="Classes\Settings.cs" />
     <Compile Include="Classes\STUB_Bike.cs" />
     <Compile Include="Classes\TXT_Bike.cs" />
+    <Compile Include="Controller\ResultGenerator.cs" />
     <Compile Include="Controller\RH_Controller.cs" />
     <Compile Include="Controller\Specialist_Controller.cs" />
     <Compile Include="Controller\Training_Controller.cs" />

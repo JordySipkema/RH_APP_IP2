@@ -37,6 +37,16 @@
       <Association Name="User_Measurement" Member="Measurements" ThisKey="Id" OtherKey="User_ID" Type="Measurement" />
       <Association Name="User_SpecialistHasClient" Member="SpecialistHasClients" ThisKey="Id" OtherKey="ClientID" Type="SpecialistHasClient" />
       <Association Name="User_SpecialistHasClient1" Member="SpecialistHasClients1" ThisKey="Id" OtherKey="SpecialistID" Type="SpecialistHasClient" />
+      <Association Name="User_Result" Member="Results" ThisKey="Id" OtherKey="UserID" Type="Result" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Result" Member="Results">
+    <Type Name="Result">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="VO2Max" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Association Name="User_Result" Member="User" ThisKey="UserID" OtherKey="Id" Type="User" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

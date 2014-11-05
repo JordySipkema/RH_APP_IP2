@@ -3,6 +3,8 @@ using RH_APP.Classes;
 using System;
 using System.Linq;
 using System.Timers;
+using RH_Server.Classes;
+using RH_Server.Database;
 
 namespace RH_APP.Controller
 {
@@ -47,7 +49,7 @@ namespace RH_APP.Controller
         public void StartPreTraining()
         {
 
-            _trainingTimer = new System.Timers.Timer(10000);
+            _trainingTimer = new Timer(10000);
             _trainingTimer.Elapsed += PowerCheckAndSet;
             _trainingTimer.Enabled = true;
             
@@ -56,7 +58,7 @@ namespace RH_APP.Controller
         public void StartTraining()
         {
             _trainingTimer.Enabled = false;
-            _trainingTimer = new System.Timers.Timer(5000);
+            _trainingTimer = new Timer(5000);
             _trainingTimer.Elapsed += MainTraining;
             _trainingTimer.Enabled = true;
 
@@ -72,26 +74,35 @@ namespace RH_APP.Controller
                         : "Uw RPM is te hoog, Maximum = 60 RPM");
             }
 
-            if(_count >= 48 && ((_count - 48) % 3) == 0){
+            if (_count >= 48 && ((_count - 48)%3) == 0)
+            {
                 var msmt = (from m in _controller.Measurements
-                        where m.DATE > DateTime.Now.Subtract(new TimeSpan(0,0,15))
-                        && m.DATE < DateTime.Now.Subtract(new TimeSpan(0,0,14))
-                        select m).FirstOrDefault();
+                    where m.DATE > DateTime.Now.Subtract(new TimeSpan(0, 0, 15))
+                          && m.DATE < DateTime.Now.Subtract(new TimeSpan(0, 0, 14))
+                    select m).FirstOrDefault();
 
                 if (msmt != null)
                 {
                     var difference = _controller.LatestMeasurement.PULSE - msmt.PULSE;
                     if (difference > -3 && difference < 3)
                     {
-                        Console.WriteLine("End training");
-                        
+                        OnMessageEvent("System", "Einde training, fietst u nu rustig uit.");
+                        var avgHeartrate = (_controller.LatestMeasurement.PULSE + msmt.PULSE)/2;
+                        var result = ResultGenerator.CalculateVO2Max(
+                            avgHeartrate, 88, _controller.LatestMeasurement.POWER, true);
+
+                        var userid = new DatabaseController().GetUser("client").Id;
+                        var resultC = new Result()
+                        {
+                            Date = DateTime.Now,
+                            UserID = userid.Value,
+                            VO2Max = result
+                        };
+                        new DatabaseController().SaveResult(resultC);
                     }
                 }
             }
             _count++;
-
-
-
         }
 
         private void PowerCheckAndSet(Object source, ElapsedEventArgs e)

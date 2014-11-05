@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using Mallaca.Network.Packet.Request;
 using Mallaca.Network.Packet.Response;
 using Newtonsoft.Json.Linq;
