@@ -17,7 +17,12 @@ namespace RH_APP.Controller
                 : (0.00193*workload + 0.326)/(0.796*avgHeartrate - 56.1)*100;
 
             // Convert VO2 max to ml/kg/min
-            return Vo2max*1000/weight;
+            var x = Vo2max*1000/weight;
+            if (x < 0)
+            {
+                x = -x;
+            }
+            return x;
         }
     }
 }

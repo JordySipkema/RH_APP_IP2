@@ -13,6 +13,7 @@ namespace RH_APP.Controller
         private RH_Controller _controller;
         private Timer _trainingTimer;
         private int _count = 36;
+        private bool _endTraining = false;
 
         public Training_Controller(string port)
         {
@@ -48,7 +49,7 @@ namespace RH_APP.Controller
 
         public void StartPreTraining()
         {
-
+            OnMessageEvent("System", "Warming up started");
             _trainingTimer = new Timer(30000);
             _trainingTimer.Elapsed += PowerCheckAndSet;
             _trainingTimer.Enabled = true;
@@ -98,9 +99,13 @@ namespace RH_APP.Controller
                             UserID = userid.Value,
                             VO2Max = result
                         };
-                        new DatabaseController().SaveResult(resultC);
-                        OnMessageEvent("System:Uitslag", 
-                            String.Format(">>>> Uw uitslag is bekend: VO2Max = {0} ml/kg/min", result));
+                        if (!_endTraining)
+                        {
+                            new DatabaseController().SaveResult(resultC);
+                            _endTraining = true;
+                            OnMessageEvent("System:Uitslag",
+                                String.Format(">>>> Uw uitslag is bekend: VO2Max = {0} ml/kg/min", result));
+                        }
                     }
                 }
             }
